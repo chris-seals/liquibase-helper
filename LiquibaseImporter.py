@@ -38,7 +38,7 @@ def remake_changeset(line:str, updated_changesets:list) -> str:
             line = line.replace(f'{item}:false', '')
     return line 
 
-version = 'v1.4.0'
+version = 'v1.5.0'
 
 sql_files = glob(f'./{version}/*.sql')
 

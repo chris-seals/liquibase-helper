@@ -6,13 +6,13 @@ import sys
 from numpy import real
 import pandas as pd
 
-version = 'v1.4.0'
+version = 'v1.5.0'
 
 def changeset_parser(line: str) -> dict:
     """ parses a given changeset into a dictionary format"""
     lineparts = line.split()
     changeset_dict = {}
-    options = ['runWith', 'runAlways', 'runOnChange', 'labels', 'contexts']
+    options = ['runWith', 'runAlways', 'runOnChange', 'labels', 'context']
     for part in lineparts:
         #print(lineparts)
         if 'sql-' in part:
@@ -23,7 +23,7 @@ def changeset_parser(line: str) -> dict:
                 options.remove(option)
         # assign remaining blank values
         for option in options:
-            if option in ['labels','contexts']:
+            if option in ['labels','context']:
                 changeset_dict[option] = ''
             else:
                 changeset_dict[option] = 'false'
