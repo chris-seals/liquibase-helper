@@ -7,11 +7,11 @@ from numpy import real
 import pandas as pd
 import os
 
-version = 'v1.5.0'
+version = 'v1.6.0'
 
-# TODO make parser ensure the ID matches the filename
-# TODO return a list of files that have no --liquibase formatted sql at the top
-# TODO identify missing changesets
+# TODO make parser ensure the ID matches the filename - DONE
+# TODO return a list of files that have no --liquibase formatted sql at the top - DONE
+# TODO identify missing changesets - DONE
 
 def changeset_parser(line: str) -> dict:
     """ parses a given changeset into a dictionary format"""

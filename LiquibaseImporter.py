@@ -32,13 +32,13 @@ def remake_changeset(line:str, updated_changesets:list) -> str:
     cd = list(
         filter(lambda changeset: changeset['id'] == id, updated_changesets))[0]
 
-    line = f"--changeset {cd['id']} runWith:{cd['runWith']} labels:{cd['labels']} contexts:{cd['contexts']} runAlways:{cd['runAlways']} runOnChange:{cd['runOnChange']}\n"
+    line = f"--changeset {cd['id']} runWith:{cd['runWith']} labels:{cd['labels']} context:{cd['context']} runAlways:{cd['runAlways']} runOnChange:{cd['runOnChange']}\n"
     for item in ['runOnChange', 'runAlways']:
         if cd[item] == 'false':
             line = line.replace(f'{item}:false', '')
     return line 
 
-version = 'v1.5.0'
+version = 'v1.6.0'
 
 sql_files = glob(f'./{version}/*.sql')
 
@@ -62,7 +62,7 @@ def update_changesets(file):
 #print([match for match in test_cs.split() if 'sql-' in match])
 #cd = list(
 #     filter(lambda changeset: changeset['id'] == idoi, updated_changesets))[0]
-# line = f"--changeset {cd['id']} runWith:{cd['runWith']} labels:{cd['labels']} contexts:{cd['contexts']} runAlways:{cd['runAlways'].lower()} runOnChange:{cd['runOnChange'].lower()}"
+# line = f"--changeset {cd['id']} runWith:{cd['runWith']} labels:{cd['labels']} context:{cd['context']} runAlways:{cd['runAlways'].lower()} runOnChange:{cd['runOnChange'].lower()}"
 # for item in ['runOnChange', 'runAlways']:
 #     if cd[item].lower() == 'false':
 #         line = line.replace(f'{item}:false', '')
