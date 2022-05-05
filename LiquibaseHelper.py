@@ -74,6 +74,17 @@ def increment_changeset(file):
                 line = re.sub('(?<=:)\S+\.sql', file.split('/')[-1], line)
         sys.stdout.write(line)
 
+def find_missing_changesets(file):
+        file1 = open(file, 'r')
+        lines = file1.readlines()
+        no_changesets = True
+        for line in lines:
+            if 'changeset' in line:
+                no_changesets = False
+                break
+        if no_changesets == True:
+            print(f'FILE {file} CONTAINS NO CHANGESETS!')
+
 def export_changesets_to_csv(changeset_dict: dict, filename: str):
     df = pd.DataFrame(changeset_dict)
     df.to_csv(filename, index=False)
@@ -102,7 +113,8 @@ sql_files = glob(f'./{version}/*.sql')
 for sql_file in sql_files:
     version_and_increment_reset(version, sql_file)
     increment_changeset(sql_file)
-
+    find_missing_changesets(sql_file)
+    
 # comb through and retrieve all changesets - export to csv
 existing_changesets = []
 for sql_file in sql_files:
